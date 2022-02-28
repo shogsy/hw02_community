@@ -1,5 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Group
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+
+from .models import Group
+from .models import Post
 
 
 def index(request):
