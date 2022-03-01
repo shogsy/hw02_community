@@ -4,6 +4,7 @@ from .models import Group, Post
 
 POSTS_NUM = 10
 
+
 def index(request):
     posts = Post.objects.order_by('-pub_date')[:POSTS_NUM]
     template = 'posts/index.html'
