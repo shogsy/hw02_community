@@ -26,3 +26,7 @@ class Post(models.Model):
         null=True,
         related_name='group',
         on_delete=models.SET_NULL)
+
+    def __str__(self):
+        # вывод текста поста
+        return self.text
