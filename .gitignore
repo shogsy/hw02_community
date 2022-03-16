@@ -131,3 +131,13 @@ dmypy.json
 #PyCharm settings directory
 ./.idea
 /yatube/posts/migrations/
+/.idea/.gitignore
+/yatube/about/migrations/__init__.py
+/yatube/core/migrations/__init__.py
+/yatube/users/migrations/__init__.py
+/.idea/hw02_community.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
