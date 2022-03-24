@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Пост {{ post.text|truncatechars:30 }}{% endblock %}
 {% block content %}
+<div class="container py-5">
   <div class="row">
     <aside class="col-12 col-md-3">
       <ul class="list-group list-group-flush">
@@ -31,8 +32,9 @@
         {{ post.text }}
       </p>
       {% if  request.user == post.author %}
-        <a class="btn btn-sm text-muted" href="{% url 'posts:post_edit' post.author post.id %}" role="button">Редактировать</a>
+        <a class="btn btn-primary" href="{% url 'posts:post_edit' post.id %}" role="button">Редактировать</a>
       {% endif %}
     </article>
   </div>
+</div>
 {% endblock %}

@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
 
 from .forms import PostForm
 from .models import Group, Post, User
@@ -81,17 +82,17 @@ def post_create(request):
 
 # Страница для редактирования постов. Доступна только авторизованным
 @login_required
-def post_edit(request, username, post_id):
+def post_edit(request, post_id):
     # Проверка на владельца поста. Если != пользователь, выдать 403
-    author = User.objects.get(username=username)
-    if request.user != author:
+    post = get_object_or_404(Post, pk=post_id)
+    if request.user != post.author:
         return HttpResponseForbidden('Не достаточно прав на редактирование')
-    post = get_object_or_404(Post, author=author, id=post_id)
-    form = PostForm(request.Post, instance=post)
+    form = PostForm(request.POST, instance=post)
     if request.method == 'POST' and form.is_valid():
         post = form.save(commit=False)
         post.save()
-        return redirect('posts:post_detail', id=post_id)
+        return redirect(reverse('posts:post_detail', kwargs={
+            'post_id': post_id}))
     form = PostForm(instance=post)
     template = 'posts/create_post.html'
     context = {'form': form,
