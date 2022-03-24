@@ -4,12 +4,14 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .validators import validate_not_empty
 
-User=get_user_model()
+User = get_user_model()
+
 
 class CreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('first_name', 'last_name', 'username', 'email')
+
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100, validators=[validate_not_empty])
